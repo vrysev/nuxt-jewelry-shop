@@ -28,6 +28,15 @@ module.exports = {
       fontFamily: {
         sans: ["Montserrat", "system-ui", "sans-serif"],
       },
+      width: {
+        xs: "20rem", // 320px
+        sm: "24rem", // 384px
+        md: "28rem", // 448px
+        lg: "32rem", // 512px
+        xl: "36rem", // 576px
+        "2xl": "42rem", // 672px
+        "3xl": "48rem", // 768px
+      },
     },
   },
   plugins: [],

@@ -8,7 +8,7 @@ const icons = [
   { name: 'Search', icon: 'material-symbols-light:search-rounded', route: '/search' },
   { name: 'Cart', icon: 'material-symbols-light:shopping-cart-outline', route: '/cart' },
   { name: 'Favorites', icon: 'material-symbols-light:favorite-outline', route: '/favorites' },
-  { name: 'Profile', icon: 'material-symbols-light:person', route: '/profile' }
+  { name: 'Profile', icon: 'material-symbols-light:person-outline', route: '/profile' }
 ]
 </script>
 
@@ -24,6 +24,7 @@ const icons = [
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
+          <!-- Navigation links -->
           <ul class="flex items-center gap-8">
             <li v-for="item in navigation" :key="item.name">
               <NuxtLink :to="item.route" active-class="border-opacity-100"
@@ -33,8 +34,10 @@ const icons = [
             </li>
           </ul>
 
-          <div class="w-px h-6 bg-light-gray"></div>
+          <!-- Separator -->
+          <div class="separator w-px h-6 bg-light-gray"></div>
 
+          <!-- Navigation icons -->
           <div class="flex items-center gap-8">
             <NuxtLink v-for="icon in icons" :key="icon.name" :to="icon.route" :aria-label="icon.name"
               class="leading-none">
