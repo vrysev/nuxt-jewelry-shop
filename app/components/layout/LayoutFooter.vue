@@ -1,50 +1,48 @@
 <script lang="ts" setup>
-
+const { footerNavigation, socialLinks } = useNavigation();
+const currentYear = new Date().getFullYear();
 </script>
 
 <template>
-  <footer
-    class="h-20 border-t max-w-7xl mx-auto px-6 h-full lg:px-8 border-light-gray flex-col items-center justify-center gap-14">
-    <nav class="footer-nav flex flex-col-reverse gap-8 md:flex-row md:items-center justify-between w-full mt-8">
-      <ul class="flex md:items-center flex-col md:flex-row gap-8 mb-4">
-        <li>
-          <NuxtLink to="/contact" class="text-dark-gray hover:text-black transition-colors duration-300">Contact Us
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/terms" class="text-dark-gray hover:text-black transition-colors duration-300">Terms of
-            Service
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/privacy" class="text-dark-gray hover:text-black transition-colors duration-300">Privacy Policy
-          </NuxtLink>
-        </li>
-      </ul>
-      <UiInput />
-    </nav>
-    <div
-      class="footer-creds flex flex-col-reverse md:flex-row w-full md:items-center justify-between pb-16 mt-12 gap-8">
-      <span class="text-dark-gray text-sm">© 2024 Company. All rights reserved.</span>
-      <div class="footer-social flex gap-8">
-        <!-- Social media icons can be added here -->
-        <NuxtLink to="/twitter">
-          <Icon name="mdi:twitter" class="w-6 h-6 text-dark-gray hover:text-black transition-colors duration-300" />
-        </NuxtLink>
-        <NuxtLink to="/facebook">
-          <Icon name="mdi:facebook" class="w-6 h-6 text-dark-gray hover:text-black transition-colors duration-300" />
-        </NuxtLink>
-        <NuxtLink to="/instagram">
-          <Icon name="mdi:instagram" class="w-6 h-6 text-dark-gray hover:text-black transition-colors duration-300" />
-        </NuxtLink>
-        <NuxtLink to="/linkedin">
-          <Icon name="mdi:linkedin" class="w-6 h-6 text-dark-gray hover:text-black transition-colors duration-300" />
-        </NuxtLink>
+  <footer class="border-t border-light-gray">
+    <UiContainer>
+      <nav
+        class="flex flex-col gap-8 md:flex-row md:items-center justify-between"
+      >
+        <ul class="flex items-center flex-col md:flex-row gap-6">
+          <li v-for="item in footerNavigation" :key="item.name">
+            <NuxtLink
+              :to="item.route"
+              class="text-dark-gray hover:text-black transition-colors duration-300"
+            >
+              {{ item.name }}
+            </NuxtLink>
+          </li>
+        </ul>
+        <UiInput
+          type="email"
+          icon="material-symbols-light:outgoing-mail-outline"
+        />
+      </nav>
+
+      <div
+        class="flex flex-col-reverse md:flex-row md:items-center justify-between mt-8 pt-8 gap-6"
+      >
+        <span class="text-dark-gray text-sm"
+          >© {{ currentYear }} Company. All rights reserved.</span
+        >
+        <ul class="flex gap-6">
+          <li v-for="link in socialLinks" :key="link.name">
+            <NuxtLink
+              :to="link.route"
+              :aria-label="link.name"
+              class="text-dark-gray hover:text-black transition-colors duration-300"
+            >
+              <Icon :name="link.icon" class="w-5 h-5" />
+            </NuxtLink>
+          </li>
+        </ul>
       </div>
-    </div>
+    </UiContainer>
   </footer>
 </template>
-
-
-
-<style></style>
