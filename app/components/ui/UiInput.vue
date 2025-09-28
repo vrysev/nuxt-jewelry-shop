@@ -4,15 +4,19 @@ import type { InputTypeHTMLAttribute } from "vue";
 defineProps<{
   type: InputTypeHTMLAttribute;
   icon?: string;
+  placeholder?: string;
 }>();
+
+const modelValue = defineModel<string>();
 </script>
 
 <template>
   <div class="relative w-full max-w-md">
     <input
       class="w-full border-b border-black py-3 pr-12 bg-transparent focus:outline-none focus:border-accent placeholder:text-dark-gray transition-colors duration-300"
-      placeholder="Your email for promotions and offers"
+      :placeholder="placeholder"
       :type="type"
+      v-model="modelValue"
     />
     <Icon
       v-if="icon"

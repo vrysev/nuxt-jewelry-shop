@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const { navigation, icons } = useNavigation();
+const { navigation, icons, isSearchOpen } = useNavigation();
+
+const searchValue = ref("");
 </script>
 
 <template>
@@ -17,7 +19,7 @@ const { navigation, icons } = useNavigation();
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
           <!-- Navigation links -->
-          <ul class="flex items-center gap-8">
+          <ul class="flex items-center gap-8 w-full">
             <li v-for="item in navigation" :key="item.name">
               <NuxtLink
                 :to="item.route"
@@ -32,17 +34,24 @@ const { navigation, icons } = useNavigation();
           <!-- Separator -->
           <div class="w-px h-6 bg-light-gray"></div>
 
+          <UiInput
+            v-if="isSearchOpen"
+            v-model="searchValue"
+            type="search"
+            placeholder="Search..."
+          />
+
           <!-- Navigation icons -->
           <div class="flex items-center gap-8">
-            <NuxtLink
+            <button
               v-for="icon in icons"
               :key="icon.name"
-              :to="icon.route"
               :aria-label="icon.name"
               class="leading-none"
+              @click="icon.action"
             >
               <Icon :name="icon.icon" class="w-6 h-6" />
-            </NuxtLink>
+            </button>
           </div>
         </nav>
 

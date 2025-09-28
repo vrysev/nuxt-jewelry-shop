@@ -1,8 +1,11 @@
 export interface NavigationItem {
-  name: string
-  route: string
+  name: string;
+  route: string;
 }
 
-export interface IconItem extends NavigationItem {
-  icon: string
+export interface IconItem {
+  name: string;
+  route?: string;
+  icon: string;
+  action?: () => void;
 }
